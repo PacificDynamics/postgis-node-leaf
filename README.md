@@ -1,6 +1,6 @@
 ## Postgis <-> node.js <-> Leaflet
 simple node.js implementation to connect to postgresql db. Follows examples from
-- github.com/ryanj/restify-postGIS.git,
+- https://github.com/ryanj/restify-postGIS/blob/master/bin/db.js,
 - https://blog.openshift.com/instant-mapping-applications-with-postgis-and-nodejs/
 - among others to be added
 
