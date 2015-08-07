@@ -76,7 +76,11 @@ function RetrieveCadastre(bounds, res){
     sql = sql + 'and ST_Intersects(geom, ST_GeomFromText(\'SRID=4326;POLYGON((' + bbox + '))\'))';
     sqlFull.push(sql);
   }
-  var sql = sqlFull.join(' UNION ALL ') + ';'; // concatenate all geom responses and adds end of statement ';'
+  if (tables.length > 1) {
+    var sql = sqlFull.join(' UNION ALL ') + ';'; // concatenate all geom responses and adds end of statement ';'
+  } else {
+    var sql = sqlFull + ';';
+  }
 //  console.log('sql = ', sql);
 //  var vals = [bounds._southWest.lng, bounds._southWest.lat, bounds._northEast.lng, bounds._southWest.lat, bounds._northEast.lng, bounds._northEast.lat, bounds._southWest.lng, bounds._northEast.lat, bounds._southWest.lng, bounds._southWest.lat];
 //  var vals = vals.concat(vals);
