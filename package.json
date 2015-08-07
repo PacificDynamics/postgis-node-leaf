@@ -1,6 +1,6 @@
 {
-  "name": "simple-node-postgis",
-  "version": "0.0.0",
+  "name": "postgis-node-leaf",
+  "version": "0.0.1",
   "description": "simple node.js connection to local postgis server",
   "main": "app.js",
   "dependencies": {
@@ -15,7 +15,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "nodejs app.js"
+    "test": "nodejs app.js",
+    "start": "nodejs app.js"
   },
   "repository": {
     "type": "git",
