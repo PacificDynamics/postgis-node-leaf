@@ -13,19 +13,18 @@ pg('SELECT f_table_name tbl FROM geometry_columns;', function(err, rows, result)
   } else {
     tables = rows;
   }
-});
+})
+console.log('table names are: ', tables.join(', '));
 
 
 // RetrieveCadastre: returns all data in postgresql db within bounds of map window
 function RetrieveCadastre(bounds, res){
   console.log('starting RetrieveCadastre function');
-  // var connString = 'tcp://spatial:spatial@localhost/Spatial'; connectionParameters = 'postgres://user:password@host:5432/database';
-//  pg.connectionParameters = 'postgres://clayton:postgres@localhost:5432/postgres';
-//  var vals = [bounds._southWest.lng, bounds._southWest.lat, bounds._northEast.lng, bounds._southWest.lat, bounds._northEast.lng, bounds._northEast.lat,
-//              bounds._southWest.lng, bounds._northEast.lat, bounds._southWest.lng, bounds._southWest.lat];
+  // extract bounding box coordinates
   var bbox = [[bounds._southWest.lng, bounds._southWest.lat].join(' '), [bounds._northEast.lng, bounds._southWest.lat].join(' '),[bounds._northEast.lng, bounds._northEast.lat]
               .join(' '),[bounds._southWest.lng, bounds._northEast.lat].join(' '),[bounds._southWest.lng, bounds._southWest.lat].join(' ')].join(",");
   //console.log('bbox = ', bbox);
+  // collect queries for all tables that exist in the database
   var sqlFull = [];
   for (i=0; i < tables.length; i++) {
     var sql = 'select ST_AsGeoJSON(geom) as shape ' + 'from ' + tables[i].tbl + ' ';
@@ -35,6 +34,7 @@ function RetrieveCadastre(bounds, res){
   }
   if (tables.length > 1) {
     var sql = sqlFull.join(' UNION ALL ') + ';'; // concatenate all geom responses and adds end of statement ';'
+    console.log(sql);
   } else {
     var sql = sqlFull + ';';
   }

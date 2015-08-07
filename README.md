@@ -2,7 +2,6 @@
 simple node.js implementation to connect to postgresql db. Follows examples from
 - https://github.com/ryanj/restify-postGIS/blob/master/bin/db.js,
 - https://blog.openshift.com/instant-mapping-applications-with-postgis-and-nodejs/
-- among others to be added
 
 ### current version
 Loads all tables that are registered in the geometry_columns view
